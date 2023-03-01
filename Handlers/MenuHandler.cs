@@ -19,7 +19,7 @@ namespace OceansFortune.Handlers
 
         }
 
-        public void ChangeMenu(MenusType menu,[Optional] SoundHandler soundHandler)
+        public void ChangeMenu(MenusType menu,[Optional] SoundHandler soundHandler, [Optional] TextureHandler textureHandler)
         {
             switch(menu)
             {
@@ -34,7 +34,7 @@ namespace OceansFortune.Handlers
                     currentMenu = new MainMenu();
                     break;
                 case MenusType.Game:
-                    currentMenu = new GameMenu(soundHandler);
+                    currentMenu = new GameMenu(soundHandler, textureHandler);
                     break;
             }
         }
@@ -42,15 +42,15 @@ namespace OceansFortune.Handlers
         public void ShowMenu(TextureHandler textureHandler, SoundHandler soundHandler)
         {
             Raylib.SetWindowTitle(currentMenu.Title);
-            currentMenu.Show(textureHandler, soundHandler);
+            currentMenu.Update(textureHandler, soundHandler);
         }
 
-        public void UpdateMenu(SoundHandler soundHandler)
+        public void UpdateMenu(SoundHandler soundHandler, TextureHandler textureHandler)
         {
-            var response = this.currentMenu.Update();
+            var response = this.currentMenu.ChangeWindow();
             if(response != MenusType.None)
             {
-                ChangeMenu(response, soundHandler);
+                ChangeMenu(response, soundHandler, textureHandler);
             }
         }
     }

@@ -1,11 +1,6 @@
 ﻿using OceansFortune.Game.DataTypes;
 using OceansFortune.Handlers;
 using Raylib_cs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OceansFortune.Game.Menus
 {
@@ -18,8 +13,7 @@ namespace OceansFortune.Game.Menus
 
         }
         
-
-        public override void Show(TextureHandler textureHandler, SoundHandler soundHandler)
+        public override void Update(TextureHandler textureHandler, SoundHandler soundHandler)
         {
             Raylib.BeginDrawing();
             var (texture, src, dest) = textureHandler.GetMainMenuBackgroundRenderingObjects();
@@ -30,11 +24,10 @@ namespace OceansFortune.Game.Menus
             Raylib.EndDrawing();
         }
 
-        public override MenusType Update()
+        public override MenusType ChangeWindow()
         {
            if(Raylib.IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_LEFT))
             {
-                Console.WriteLine(1);
                 return MenusType.Game;
             }
             return MenusType.None;

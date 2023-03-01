@@ -9,18 +9,6 @@ namespace OceansFortune.Game.DataTypes
     public enum Tiles
     {
         SEA,
-        ROCK,
-
-        ISLANDTOPLEFT,
-        ISLANDTOPMIDDLE,
-        ISLANDTOPRIGHT,
-
-        ISLANDMIDDLELEFT,
-        ISLANDMIDDLE,
-        ISLANDMIDDLERIGHT,
-
-        ISLANDBOTTOMLEFT,
-        ISLANDBOTTOMMIDDLE,
-        ISLANDBOTTOMRIGHT
+        SEARIPPLES,
     }
 }

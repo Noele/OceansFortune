@@ -1,24 +1,33 @@
 ﻿using OceansFortune.Game.DataTypes;
 using Raylib_cs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OceansFortune.Handlers
 {
     public class TextureHandler
     {
+        //Seagull
         private Dimensions textureAtlasDimensionsSeagull;
         private Texture2D textureSeagull;
         private Image imageSeagull;
 
+        //Main Menu
         private Dimensions textureDimensionsMainMenuBackground;
         private Texture2D textureMainMenuBackground;
         private Image imageMainMenuBackground;
         private Rectangle mainMenuBackgroundSourceRectangle;
         private Rectangle mainMenuBackgroundDestinationRectangle;
+
+        //Map
+        private Image playerImage;
+        public Texture2D playerTexture;
+
+        private Dimensions textureAtlasDimensionsSeaRipples;
+        private Texture2D textureSeaRipples;
+        private Image imageSeaRipples;
+
+        private Dimensions textureAtlasDimensionsSea;
+        private Image imageSea;
+        public Texture2D textureSea;
 
         public TextureHandler()
         {
@@ -31,9 +40,26 @@ namespace OceansFortune.Handlers
             this.textureMainMenuBackground = Raylib.LoadTextureFromImage(imageMainMenuBackground);
             this.mainMenuBackgroundSourceRectangle = new Rectangle(0, 0, this.textureDimensionsMainMenuBackground.width, this.textureDimensionsMainMenuBackground.height);
             this.mainMenuBackgroundDestinationRectangle = new Rectangle(0, 0, Raylib.GetRenderWidth(), Raylib.GetRenderHeight());
+
+            this.playerImage = Raylib.LoadImage("res/ship.png");
+            this.playerTexture = Raylib.LoadTextureFromImage(this.playerImage);
+
+            this.textureAtlasDimensionsSeaRipples = new Dimensions { width = 96, height = 32 };
+            this.imageSeaRipples = Raylib.LoadImage("res/searipples.png");
+            this.textureSeaRipples = Raylib.LoadTextureFromImage(this.imageSeaRipples);
+
+            this.textureAtlasDimensionsSea = new Dimensions { width = 32, height = 32 };
+            this.imageSea = Raylib.LoadImage("res/sea.png");
+            this.textureSea = Raylib.LoadTextureFromImage(this.imageSea);
         }
 
-        public (Texture2D, Dimensions, Rectangle) GetSeagullRenderingObjects(Direction direction)
+        public Tuple<Texture2D, Dimensions, Rectangle> GetSeaRipplesRenderingObjects()
+        {
+
+            return Tuple.Create(this.textureSeaRipples, this.textureAtlasDimensionsSeaRipples, new Rectangle(0, 0, 32, 32));
+        }
+
+        public Tuple<Texture2D, Dimensions, Rectangle> GetSeagullRenderingObjects(Direction direction)
         {
             Rectangle textureAtlasLocation = new Rectangle(0, 0, 32, 23);
             switch(direction)
@@ -52,7 +78,7 @@ namespace OceansFortune.Handlers
                     break;
             }
 
-            return(this.textureSeagull, this.textureAtlasDimensionsSeagull, textureAtlasLocation);
+            return Tuple.Create(this.textureSeagull, this.textureAtlasDimensionsSeagull, textureAtlasLocation);
         }
 
         public (Texture2D, Rectangle, Rectangle) GetMainMenuBackgroundRenderingObjects()

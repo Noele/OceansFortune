@@ -1,4 +1,5 @@
 ﻿using OceansFortune.Game.DataTypes;
+using OceansFortune.Handlers;
 using Raylib_cs;
 using System;
 using System.Collections.Generic;
@@ -13,22 +14,19 @@ namespace OceansFortune.Game.Entities
     {
         private Dimensions dimentions;
         public Position position;
-        private Image image;
-        private Texture2D texture;
         public Rectangle destRect;
         private Rectangle sourceRect;
         private Vector2 direction;
+        private TextureHandler textureHandler;
         private Vector2 origin;
-        public Player() {
+        public Player(TextureHandler textureHandler) {
             this.dimentions = new Dimensions { width = 29, height = 49 };
-            this.position = new Position { x = 0, y = 0, rotation = 180 };
+            this.position = new Position { x = 100, y = 100, rotation = 180 };
             this.destRect = new Rectangle((Raylib.GetRenderWidth() / 2) - this.dimentions.width / 2, (Raylib.GetRenderHeight() / 2) - this.dimentions.width / 2, this.dimentions.width + (this.dimentions.width / 2), this.dimentions.height + (this.dimentions.width / 2));
             this.sourceRect = new Rectangle(0, 0, 66, 113);
-            this.origin = new Vector2(15, 25);
+            this.origin = new Vector2(0, 0);
             this.direction = new Vector2(0, 0);
-
-            image = Raylib.LoadImage("res/ship.png");
-            texture = Raylib.LoadTextureFromImage(image);
+            this.textureHandler = textureHandler;
         }
         private double ConvertToRadians(double angle)
         {
@@ -66,7 +64,7 @@ namespace OceansFortune.Game.Entities
 
         public void Draw()
         {
-            Raylib.DrawTexturePro(texture, sourceRect, destRect, origin, -this.position.rotation, Color.WHITE);
+            Raylib.DrawTexturePro(this.textureHandler.playerTexture, sourceRect, destRect, origin, -this.position.rotation, Color.WHITE);
         }
     }
 }

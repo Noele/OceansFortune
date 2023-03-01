@@ -32,6 +32,12 @@ namespace OceansFortune.Handlers
                     break;
             }
         }
+        
+        public void Stop()
+        {
+            Raylib.StopSound(this.ambience);
+            Raylib.StopSoundMulti();
+        }
 
         public void CleanUp()
         {

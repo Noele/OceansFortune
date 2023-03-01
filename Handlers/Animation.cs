@@ -21,17 +21,14 @@ namespace OceansFortune.Handlers
 
         private Rectangle sourceRect;
         private Rectangle destRect;
-        private Image image;
         private Texture2D texture;
-        public Animation(string texturePath, Dimensions dimentions,  int framesSpeed, int animationFrames)
-        {
-            this.dimentions = dimentions;
 
-            this.image = Raylib.LoadImage(texturePath);
-            this.texture = Raylib.LoadTextureFromImage(this.image);
+        public Animation(Tuple<Texture2D, Dimensions, Rectangle> textureHandlerOutput, int framesSpeed, int animationFrames)
+        {
+            (this.texture, this.dimentions, this.sourceRect) = textureHandlerOutput;
+            Console.WriteLine(this.texture.width);
             this.framesSpeed = framesSpeed;
             this.animationFrames = animationFrames;
-            this.sourceRect = new Rectangle(0, 0, this.dimentions.width/animationFrames, dimentions.height);
             this.destRect = new Rectangle();
         }
 

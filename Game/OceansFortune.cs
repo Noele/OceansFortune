@@ -1,14 +1,6 @@
 ﻿using OceansFortune.Game.DataTypes;
-using OceansFortune.Game.Entities;
-using OceansFortune.Game.World;
 using OceansFortune.Handlers;
 using Raylib_cs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OceansFortune.Game
 {
@@ -32,7 +24,7 @@ namespace OceansFortune.Game
             while (!Raylib.WindowShouldClose())
             {
                 menuHandler.ShowMenu(textureHandler, soundHandler);
-                menuHandler.UpdateMenu(soundHandler);
+                menuHandler.UpdateMenu(soundHandler, textureHandler);
 
             }
             Raylib.CloseWindow();

@@ -11,7 +11,7 @@ namespace OceansFortune.Game.Menus
     public abstract class Menu
     {
         public abstract string Title { get; }
-        public abstract void Show (Handlers.TextureHandler textureHandler, SoundHandler soundHandler);
-        public abstract MenusType Update();
+        public abstract void Update (Handlers.TextureHandler textureHandler, SoundHandler soundHandler);
+        public abstract MenusType ChangeWindow();
     }
 }
